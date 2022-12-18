@@ -12,36 +12,36 @@ export default function Home({countriesData}) {
   const [region, setRegion] = useState('')
 
 
-  const filteredCountries = () => {
-
-    if(!search && !region){
-      setCountries(countriesData)
-    }
-    else if(search && !region){
-      setCountries(countriesData.filter(country => country.name?.common?.toLowerCase().includes(search.toLowerCase())))
-    }
-    else if(!search && region){
-      setCountries(countriesData.filter(country => country.region == region))
-    }else if(!search && region) {
-      setCountries(countriesData.filter(country => country.region == region))
-    }
-    else if (countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase())) !== undefined && region) {
-      
-      const searchValues = countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase()))
-
-      if (searchValues.filter((item, idx) => searchValues[idx].region === region)) {
-        setCountries(searchValues.filter((item, idx) => searchValues[idx].region === region))
-      } 
-      
-    }
-    else if(countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase())) === undefined) {
-      setCountries([])
-    }
-  }
+  
 
   useEffect(() => {
+    const filteredCountries = () => {
+      if(!search && !region){
+        setCountries(countriesData)
+      }
+      else if(search && !region){
+        setCountries(countriesData.filter(country => country.name?.common?.toLowerCase().includes(search.toLowerCase())))
+      }
+      else if(!search && region){
+        setCountries(countriesData.filter(country => country.region == region))
+      }else if(!search && region) {
+        setCountries(countriesData.filter(country => country.region == region))
+      }
+      else if (countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase())) !== undefined && region) {
+        
+        const searchValues = countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase()))
+  
+        if (searchValues.filter((item, idx) => searchValues[idx].region === region)) {
+          setCountries(searchValues.filter((item, idx) => searchValues[idx].region === region))
+        } 
+        
+      }
+      else if(countriesData.filter(country => country.name?.common.toLowerCase().includes(search.toLowerCase())) === undefined) {
+        setCountries([])
+      }
+    }
     filteredCountries()
-  },[search, region])
+  },[countriesData, search, region])
   
 	return (
 		<>
