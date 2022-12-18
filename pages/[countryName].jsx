@@ -110,26 +110,7 @@ const CountryDetails = ({country, countries}) => {
 
 export default CountryDetails
 
-export const getStaticPaths = async() => {
-  const res = await fetch(`https://restcountries.com/v3.1/all`)
-  const data = await res.json()
-  
-
-  const paths = data.map(country => {
-    return {
-      params: {
-        countryName: `${country.name?.common}`
-      }
-    }
-  })
-
-  return {
-    paths,
-    fallback: 'blocking',
-  }
-}
-
-export const getStaticProps = async(context) => {
+export const getServerSideProps = async(context) => {
   const countryName = context.params?.countryName
 
   const res = await fetch(`https://restcountries.com/v3.1/all`)
