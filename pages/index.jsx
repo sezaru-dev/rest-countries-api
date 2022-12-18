@@ -11,9 +11,6 @@ export default function Home({countriesData}) {
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('')
 
-
-  
-
   useEffect(() => {
     const filteredCountries = () => {
       if(!search && !region){
@@ -92,11 +89,3 @@ export const getStaticProps = async() => {
     }
   }
 }
-
-/* 
-Error: Export encountered errors on following paths:
-        /[countryName]: /Antarctica
-        /[countryName]: /Bouvet Island
-        /[countryName]: /Heard Island and McDonald Islands
-
- */
